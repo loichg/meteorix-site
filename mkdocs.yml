@@ -18,15 +18,7 @@ nav:
   - Impacts éthiques/sociétaux: impacts_ethiques_societaux.md
   - Références: references.md
   - Annexes: annexes.md
-
-theme:
-  name: material
-  features:
-    - navigation.tabs
-    - navigation.top
-  # Désactiver la table des matières
-  toc:
-    visible: false
+theme: material
 
 markdown_extensions:
   - pymdownx.arithmatex:
@@ -45,7 +37,4 @@ extra_javascript:
 
 plugins:
   - mkdocs-jupyter
-
-extra_css:
-  - custom.css
-  - extra.css
+  
