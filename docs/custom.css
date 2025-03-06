@@ -1,0 +1,35 @@
+body {
+    background-color: #f4f4f4; /* Couleur de fond */
+    background-image: url('space.jpg'); /* Image de fond */
+    background-size: cover; /* Ajuste l'image au fond */
+    background-position: center;
+    background-attachment: fixed; /* Fixe l’image lors du scroll */
+}
+
+/* Assombrir le texte */
+.md-typeset {
+    color: #333;
+}
+
+/* Ajouter une ombre portée au texte */
+.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset p {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajouter un arrière-plan semi-transparent derrière le texte */
+.md-content {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Ajuster la largeur du contenu */
+.md-grid {
+    max-width: 800px;
+}
+
+/* Modifier la couleur des liens */
+.md-typeset a {
+    color: #ff5722;
+    text-decoration: underline;
+}

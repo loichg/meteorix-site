@@ -37,3 +37,6 @@ extra_javascript:
 
 plugins:
   - mkdocs-jupyter
+
+extra_css:
+  - custom.css
