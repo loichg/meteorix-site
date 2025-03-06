@@ -11,7 +11,7 @@ def calculate_angle(mv):
     start_pt = np.array([mv[3], mv[4]])
     end_pt = np.array([mv[5], mv[6]])
     direction = end_pt - start_pt
-    angle = np.arctan2(direction[1], direction[0])  # En radians
+    angle = np.arctan2(direction[1], direction[0])  
     return angle
 ```
 

@@ -1,4 +1,4 @@
-# Impacts éthiques/sociétaux
+# Impacts éthiques/sociétaux  
 
 ### Préoccupations
 
