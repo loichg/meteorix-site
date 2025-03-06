@@ -1,7 +1,47 @@
 body {
-    background-color: #f4f4f4; /* Couleur de fond */
-    background-image: url('space.jpg'); /* Image de fond */
-    background-size: cover; /* Ajuste l'image au fond */
+    background-color: #000000;
+    background-image: url('space.jpg');
+    background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Fixe l’image lors du scroll */
+    background-attachment: fixed;
+    color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+
+a {
+    color: #00bcd4;
+}
+
+a:hover {
+    color: #ff4081;
+}
+
+code {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+blockquote {
+    border-left: 4px solid #00bcd4;
+    color: #cccccc;
+}
+
+table {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+th, td {
+    border: 1px solid #444444;
+}
+
+ul, ol {
+    color: #ffffff;
+}
+
+li {
+    color: #ffffff;
 }
