@@ -1,6 +1,6 @@
 body {
     background-color: #f4f4f4; /* Couleur de fond */
-    background-image: url('food2.jpg'); /* Image de fond */
+    background-image: url('space.jpg'); /* Image de fond */
     background-size: cover; /* Ajuste l'image au fond */
     background-position: center;
     background-attachment: fixed; /* Fixe l’image lors du scroll */
