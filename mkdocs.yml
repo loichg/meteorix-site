@@ -8,7 +8,6 @@ nav:
   - Inférence de Flownet: inf.md
   - Génération d'une base de données: gen.md
   - Conclusion: conclusion.md
-  - Annexes: annexes.md
   - Utilisation FFMPEG : Utilisation FFMPEG.ipynb
   - Utilisation MVE : Utilisation MVE.ipynb
   - Implémentation Flownet sur em780 : implem.md
