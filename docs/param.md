@@ -8,11 +8,7 @@ Tout d'abord pour lancer Motion Vector Extractor sur l'EM780 nous avons eu l'id�
 
 Comme première approche nous allons lancer notre algorithme sur une vidéo compressée avec les paramètres par défaut sur l'EM780 et comparer les vecteurs que l'on obtient avec celle que notre machine personnelle a extraite.
 
-![Compression originale](img/compression/figure15.png)  
-*Figure 15: Compression originale*
-
-![Compression avec l'EM780](img/compression/figure16.png)  
-*Figure 16: Compression avec l'EM780*
+![Compression avec l'EM780](figure8.png)  
 
 Nous remarquons que notre algorithme a réussi à capturer le météore sur notre PC au contraire de l'EM780. Les filtres appliqués sont peut être trop forts, ou l'image est simplement compressée différemment.
 
@@ -62,38 +58,7 @@ Les images suivantes sont celles où le météore a été le mieux attrapé en u
 
 En revanche il est difficile de déterminer quelle est la meilleure combinaison, c'est pourquoi nous allons faire une analyse de composantes principales pour essayer d'y répondre.
 
-![Combinaison 1](img/compression/figure17.png)  
-*Figure 17: Combinaison 1*
-
-![Combinaison 2](img/compression/figure18.png)  
-*Figure 18: Combinaison 2*
-
-![Combinaison 3](img/compression/figure19.png)  
-*Figure 19: Combinaison 3*
-
-![Combinaison 4](img/compression/figure20.png)  
-*Figure 20: Combinaison 4*
-
-![Combinaison 5](img/compression/figure21.png)  
-*Figure 21: Combinaison 5*
-
-![Combinaison 6](img/compression/figure22.png)  
-*Figure 22: Combinaison 6*
-
-![Combinaison 7](img/compression/figure23.png)  
-*Figure 23: Combinaison 7*
-
-![Combinaison 8](img/compression/figure24.png)  
-*Figure 24: Combinaison 8*
-
-![Combinaison 9](img/compression/figure25.png)  
-*Figure 25: Combinaison 9*
-
-![Combinaison 10](img/compression/figure26.png)  
-*Figure 26: Combinaison 10*
-
-![Combinaison 11](img/compression/figure27.png)  
-*Figure 27: Combinaison 11*
+![Combinaison 1](figure9.png)  
 
 ### 4.4.2 Analyse de composantes principales
 
@@ -107,7 +72,7 @@ Pour cela on utilise l'analyse visuelle pour savoir s'il y a suffisamment de vec
 
 Enfin, nous lançons l'ACP en utilisant le package FactoMineR de R qui permet de centrer et réduire les données afin qu'elles aient toutes la même échelle.
 
-![PCA graph of variables](img/compression/figure28.png)  
+![PCA graph of variables](figure10.png)  
 *Figure 28: Cercle des corrélations*
 
 La première remarque que l'on peut faire est que les deux premières composantes principales expliquent 60 % de l'inertie du jeu de données, ce qui signifie que ces deux axes capturent 60 % de la variance totale des données. Cela permet de réduire la dimensionnalité du jeu de données tout en préservant une part significative de l'information.
@@ -116,18 +81,10 @@ Ensuite, le premier axe oppose les images avec un vecteur de norme et d'écart t
 
 Maintenant passons à la représentation des individus dans le premier plan principal. Nous allons uniquement présenter les résultats intéressants.
 
-![Toutes les frames](img/compression/figure29.png)  
-*Figure 29: Toutes les frames*
-
-![Frames avec un météore](img/compression/figure30.png)  
-*Figure 30: Frames avec un météore*
+![Toutes les frames](figure11.png)  
 
 Le graphique de gauche représente toutes les images tandis que celui de droite est restreint aux images avec un météore dessus. D'après les deux figures, il y a clairement deux zones où des météores sont capturés (point rouge), pour les deux c'est des images avec une norme et un écart type nuls. De plus la fréquence des images clés doit se situer vers les 10.
 
-![Toutes les frames](img/compression/figure31.png)  
-*Figure 31: Toutes les frames*
-
-![Frames avec un météore](img/compression/figure32.png)  
-*Figure 32: Frames avec un météore*
+![Toutes les frames](figure12.png)  
 
 En coloriant en fonction du preset, on en déduit que seuls les presets slow et p7 permettent de capturer le météore. En revanche, nous manquons de données pour ressortir d'autres résultats pour définir le rôle des autres paramètres.

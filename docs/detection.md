@@ -14,7 +14,7 @@ Les vidéos compressées sont généralement constituées de trois types de tram
 
 Lors de la lecture d’une vidéo, le décodeur reconstruit chaque image en combinant ces différentes trames. Ce procédé est implémenté dans divers codecs tels que H.264, H.265, MPEG-4 Part 2. Ainsi nous allons récupérer et analyser ces vecteurs pour déterminer s’il y a ou non un météore présent sur l’image. De plus, la trajectoire d’un météore est rectiligne ce qui fait qu’il est facilement identifiable si le bruit de la vidéo est faible.
 
-![Représentation d’un météore](img/meteore-exemple.png)  
+![Représentation d’un météore](figure2.png)  
 *Figure 1 : Représentation d’un météore*
 
 Sur l’image ci dessus, nous pouvons voir un météore sur la droite, se déplaçant vers le bas. Dans cette vidéo le météore est assez simple à détecter du fait du fond noir de la vidéo et la présence du météore sur de nombreuses images successives.
@@ -23,7 +23,7 @@ En pratique nous pourrions être confrontés à plusieurs problèmes, d’une pa
 
 Par exemple, en pratique sur l’image suivante, les nuages rendent la détection du météore compliquée en ajoutant du bruit.
 
-![Représentation d’un météore avec nuages](img/meteore-nuages.png)  
+![Représentation d’un météore avec nuages](figure3.png)  
 *Figure 2 : Représentation d’un météore*
 
 ## 2.2 Filtrage des vecteurs
@@ -54,37 +54,17 @@ Un troisième filtre pouvant être appliqué est spécifique au météore, en ef
 
 Nous avons commencé par tester nos filtres sur un extrait du court métrage *Big Buck Bunny* car le mouvement est assez simple à analyser.
 
-![Sans filtre](img/filtres/figure3.png)  
-*Figure 3 : Sans filtre*
-
-![Filtre sur la norme](img/filtres/figure4.png)  
-*Figure 4 : Filtre sur la norme*
-
-![Filtre sur la norme et la zone](img/filtres/figure5.png)  
-*Figure 5 : Filtre sur la norme et la zone*
-
-![Filtre sur la norme, zone et angle](img/filtres/figure6.png)  
-*Figure 6 : Filtre sur la norme, zone et angle*
+![Filtre sur la norme, zone et angle](figure4.png)  
 
 Nous pouvons remarquer qu’en combinant le filtre sur la norme et la zone cela permet de conserver les parties du lapin en mouvement telles que les bras ou les oreilles. En revanche rajouter le filtre sur les angles des vecteurs n’a pas d’utilité dans ce cas-ci.
 
 Faisons la même chose sur une vidéo de météore.
 
-![Sans filtre](img/filtres/figure7.png)  
-*Figure 7 : Sans filtre*
-
-![Filtre sur la norme](img/filtres/figure8.png)  
-*Figure 8 : Filtre sur la norme*
-
-![Filtre sur la norme et la zone](img/filtres/figure9.png)  
-*Figure 9 : Filtre sur la norme et la zone*
-
-![Filtre sur la norme, zone et angle](img/filtres/figure10.png)  
-*Figure 10 : Filtre sur la norme, zone et angle*
+![Sans filtre](figure5.png)  
 
 Dès l’application du filtre sur la norme et la zone nous arrivons à isoler le météore. En revanche dans la même vidéo il y a un éclair qui, même en appliquant les 3 filtres, reste visible. Nous pourrions appliquer des filtres plus forts mais nous risquons de ne plus détecter le météore.
 
-![Image de météore](img/filtres/figure11.png)  
+![Image de météore](figure6.png)  
 *Figure 11 : Image de météore*
 
 Par la suite, un algorithme de type *knapsack* pourra être implémenté. L’idée serait de maximiser une zone en faisant la somme des normes des vecteurs vitesse tout en minimisant le nombre de vecteurs utilisés et ainsi obtenir la zone de plus forte densité.
@@ -122,11 +102,7 @@ Pour la commande d’exécution voici la liste des options disponibles :
 
 Enfin, nous avons comparé les temps d’exécution des versions Python et C++ en variant la norme minimale des vecteurs à conserver. C’est-à-dire qu’il y aura de plus en plus de vecteurs à supprimer mais moins à imprimer sur l’image.
 
-![Comparaison du temps d’exécution du programme Python vs C++](img/filtres/figure11.png)  
-
-![Temps d’exécution c++](img/filtres/figure11.png)  
-
-![Temps d’exécution python](img/filtres/figure11.png)  
+![Comparaison du temps d’exécution du programme Python vs C++](figure7.png)  
 
 Comme attendu, la version C++ est nettement plus performante que celle en Python. Elle est presque 100 fois plus rapide que la version Python.
 
