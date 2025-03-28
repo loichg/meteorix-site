@@ -28,11 +28,11 @@ Classiquement, le canal est une des trois images élémentaires qui composent un
 - **ReLU** : Une fonction d’activation qui met à 0 des données dépassant un certain seuil (dans notre cas, qui sont négatives).
 - **End-to-end Point Error (EPE)** : L’erreur standard pour l’estimation du flux optique où le flux optique estimé (pour un pixel donné : vest) est comparé avec les données GT (ground truth) (pour un pixel donné : vgt) et est calculée comme la distance euclidienne entre les deux vecteurs :
 
-  \[
-  ||v_{est} - v_{gt}||
-  \]
+\[
+||v_{est} - v_{gt}||
+\]
 
-  Pour calculer l’EPE d’une image entière, une moyenne est calculée sur tout les EPEs.
+Pour calculer l’EPE d’une image entière, une moyenne est calculée sur tout les EPEs.
 
 ## Flux optique
 
@@ -133,15 +133,15 @@ L’algorithme d’ADAM est un algorithme qui modifie le learning rate pour opti
 
 - **AdaGrad** : La première optimisation a été de diminuer le learning rate en fonction du temps et du gradient (et ainsi de prendre en compte le fait que l’algorithme converge vers la solution). Nous avons donc, avec δ une valeur pour ne pas diviser par 0, ε le learning rate de départ :
 
-  \[ r \leftarrow r + \nabla J(w_{t-1})^2 \]
+\[ r \leftarrow r + \nabla J(w_{t-1})^2 \]
   
-  \[ w_t \leftarrow w_{t-1} - \frac{\epsilon}{\delta + \sqrt{r}} * \nabla J(w_{t-1}) \]
+\[ w_t \leftarrow w_{t-1} - \frac{\epsilon}{\delta + \sqrt{r}} * \nabla J(w_{t-1}) \]
 
-  Cet algorithme a cependant un défaut : le learning rate ne fait que diminuer, de manière assez brutale, avec le temps.
+Cet algorithme a cependant un défaut : le learning rate ne fait que diminuer, de manière assez brutale, avec le temps.
 
 - **RMSProp** : Pour ralentir la progression, une restriction a été mise sur r. Une moyenne logarithmique est faite entre le terme précédent et le terme rajouté :
 
-  \[ r_t \leftarrow \gamma * r_{t-1} + (1 - \gamma) * \nabla J(w_{t-1})^2 \]
+\[ r_t \leftarrow \gamma * r_{t-1} + (1 - \gamma) * \nabla J(w_{t-1})^2 \]
 
 - **ADAM** : La dernière optimisation est de prendre en compte le moment (s), qui est une variable qui permet de ne pas tomber dans un minimum local et de chercher le minimum global. Mathématiquement, c’est une variable qui change en fonction du gradient au premier ordre (plus le gradient est grand, plus le moment est grand et plus le learning rate est élevé).[^7]
 
