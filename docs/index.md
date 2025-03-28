@@ -1,6 +1,6 @@
-![Nanosat](figure0.png)  
-
 # Meteorix
+
+![Nanosat](figure0.png) 
 
 ## Introduction
 
