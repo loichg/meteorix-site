@@ -1,10 +1,10 @@
-# 3 Environnement d'exécution
+# Environnement d'exécution
 
 Dans l'espace, le nanosatellite sera équipé d'une puce matérielle pour encoder une vidéo à partir d'images brutes. Notre client, Mr. Cassagne, nous a mis à disposition l'EM780, une machine distante située au Laboratoire d'Informatique de Paris 6.
 
-## 3.1 Procédure pour utiliser la puce matérielle
+## Procédure pour utiliser la puce matérielle
 
-### 3.1.1 Copier les images sur la machine EM780
+### Copier les images sur la machine EM780
 
 Nous avons des vidéos de météores en local, nous allons copier les vidéos sur le disque dur de l'EM780 qui a des encodeurs similaires à ceux que l'on aura sur le satellite.
 

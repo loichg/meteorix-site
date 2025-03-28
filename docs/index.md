@@ -2,9 +2,9 @@
 
 # Meteorix
 
-## 1 Introduction
+## Introduction
 
-### 1.1 Projet global
+### Projet global
 
 Meteorix est une mission CubeSat universitaire menée par plusieurs instances notamment le LIP6, le CNRS ou encore l’observatoire de Paris. La mission est dédiée à la détection et à la caractérisation des météores. L’objectif principal est d’obtenir une statistique robuste de l’entrée des météoroides et des débris spatiaux dans l’atmosphère terrestre.
 
@@ -14,7 +14,7 @@ L’objectif technologique de la mission est la détection automatique des objet
 
 Le défi technique concerne les algorithmes de détection en temps réel des météores et, dans une moindre mesure, le contrôle de l’attitude (orientation) du satellite et sa capacité à transmettre une grande quantité de données. La détection des météores depuis l’espace est un atout essentiel pour s’affranchir des conditions météorologiques et pour couvrir une large zone du ciel.
 
-### 1.2 Notre mission
+### Notre mission
 
 Le nanosatellite envoyé dans l’espace aura une unité de calcul et une caméra. Le système de capture de météore sera limité par une contrainte énergétique de 10W pour tout le fonctionnement du système, c’est-à-dire capture de la vidéo, traitement et envoi des images.
 

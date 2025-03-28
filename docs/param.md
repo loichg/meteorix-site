@@ -1,8 +1,8 @@
-# 4 Paramètres de compression
+# Paramètres de compression
 
 Dans cette partie nous allons étudier les paramètres de compression pour déterminer la manière la plus efficace de capturer un météore si on applique notre algorithme de filtrage sur une vidéo compressée par l'EM780.
 
-## 4.1 Première approche
+## Première approche
 
 Tout d'abord pour lancer Motion Vector Extractor sur l'EM780 nous avons eu l'idée de créer un environnement virtuel Python et ainsi installer les bibliothèques nécessaires au script.
 
@@ -12,7 +12,7 @@ Comme première approche nous allons lancer notre algorithme sur une vidéo comp
 
 Nous remarquons que notre algorithme a réussi à capturer le météore sur notre PC au contraire de l'EM780. Les filtres appliqués sont peut être trop forts, ou l'image est simplement compressée différemment.
 
-## 4.2 Protocole expérimental
+## Protocole expérimental
 
 Nous avons vu qu'en encodant la vidéo avec le GPU sur l'EM780 les vecteurs vitesse trouvés n'étaient pas bons. Nous allons donc essayer de jouer sur les paramètres d'encodage pour obtenir un résultat satisfaisant.
 
@@ -30,7 +30,7 @@ Nous allons suivre le déroulé suivant :
 2. On lance Motion Vector Extractor sur chaque vidéo
 3. On transfère les données obtenues sur notre PC afin de les analyser
 
-## 4.3 Commandes expérimentales
+## Commandes expérimentales
 
 | Numéro | Framerate | Preset | Images clés | Bitrate | Encodage |
 |---|---|---|---|---|---|
@@ -48,11 +48,11 @@ Nous allons suivre le déroulé suivant :
 
 *Table 1: Commandes de compression*
 
-## 4.4 Analyse
+## Analyse
 
 Nous allons regarder quelles sont les combinaisons de paramètres qui capturent au mieux un météore.
 
-### 4.4.1 Analyse visuelle
+### Analyse visuelle
 
 Les images suivantes sont celles où le météore a été le mieux attrapé en utilisant les paramètres du tableau ci-dessus. Sur les images la tache blanche est le météore et les vecteurs sont issus de la compression. La première remarque que l'on peut faire est que l'encodage H.265 n'est pas supporté (Combinaison 10). Ensuite il ne faut pas laisser un nombre trop faible d'images clés sous peine de ne même pas capturer le météore (Combinaison 1).
 
@@ -60,7 +60,7 @@ En revanche il est difficile de déterminer quelle est la meilleure combinaison,
 
 ![Combinaison 1](figure9.png)  
 
-### 4.4.2 Analyse de composantes principales
+### Analyse de composantes principales
 
 L'analyse en composantes principales (ACP) est une méthode statistique permettant de réduire la dimensionnalité d'un jeu de données tout en conservant l'essentiel de l'information. Elle transforme un ensemble de variables corrélées en un nouveau système de variables non corrélées, appelées composantes principales, ordonnées selon la variance expliquée.
 
@@ -73,7 +73,7 @@ Pour cela on utilise l'analyse visuelle pour savoir s'il y a suffisamment de vec
 Enfin, nous lançons l'ACP en utilisant le package FactoMineR de R qui permet de centrer et réduire les données afin qu'elles aient toutes la même échelle.
 
 ![PCA graph of variables](figure10.png)  
-*Figure 28: Cercle des corrélations*
+*Cercle des corrélations*
 
 La première remarque que l'on peut faire est que les deux premières composantes principales expliquent 60 % de l'inertie du jeu de données, ce qui signifie que ces deux axes capturent 60 % de la variance totale des données. Cela permet de réduire la dimensionnalité du jeu de données tout en préservant une part significative de l'information.
 

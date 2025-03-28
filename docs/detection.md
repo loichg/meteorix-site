@@ -1,8 +1,8 @@
-# 2 Algorithme de détection
+# Algorithme de détection
 
 L’objectif ici est de compresser les images récupérées par le nanosatellite afin d’obtenir les mouvements dans l’image et ainsi déterminer s’il y a un météore ou non.
 
-## 2.1 Compression vidéo
+## Compression vidéo
 
 L’idée est alors de détourner l’utilisation de la compression inter-image. En effet, la compression vidéo est une technique permettant de réduire la taille des fichiers vidéo tout en conservant une qualité d’image satisfaisante. Elle repose sur l’exploitation des redondances spatiales et temporelles afin de minimiser la quantité de données nécessaires à la reconstruction des images.
 
@@ -15,7 +15,7 @@ Les vidéos compressées sont généralement constituées de trois types de tram
 Lors de la lecture d’une vidéo, le décodeur reconstruit chaque image en combinant ces différentes trames. Ce procédé est implémenté dans divers codecs tels que H.264, H.265, MPEG-4 Part 2. Ainsi nous allons récupérer et analyser ces vecteurs pour déterminer s’il y a ou non un météore présent sur l’image. De plus, la trajectoire d’un météore est rectiligne ce qui fait qu’il est facilement identifiable si le bruit de la vidéo est faible.
 
 ![Représentation d’un météore](figure2.png)  
-*Figure 1 : Représentation d’un météore*
+*Représentation d’un météore*
 
 Sur l’image ci dessus, nous pouvons voir un météore sur la droite, se déplaçant vers le bas. Dans cette vidéo le météore est assez simple à détecter du fait du fond noir de la vidéo et la présence du météore sur de nombreuses images successives.
 
@@ -24,11 +24,11 @@ En pratique nous pourrions être confrontés à plusieurs problèmes, d’une pa
 Par exemple, en pratique sur l’image suivante, les nuages rendent la détection du météore compliquée en ajoutant du bruit.
 
 ![Représentation d’un météore avec nuages](figure3.png)  
-*Figure 2 : Représentation d’un météore*
+*Représentation d’un météore*
 
-## 2.2 Filtrage des vecteurs
+## Filtrage des vecteurs
 
-### 2.2.1 Motion Vector Extractor
+### Motion Vector Extractor
 
 Pour récupérer les vecteurs nous allons utiliser l’outil **Motion Vector Extractor**. Cet outil extrait les images, les vecteurs de mouvement, le type des images des vidéos encodées en H.264 ou MPEG-4. Pour chaque image, on obtient donc :
 
@@ -38,7 +38,7 @@ Pour récupérer les vecteurs nous allons utiliser l’outil **Motion Vector Ext
 
 De plus, une API est disponible et bien documentée en Python ainsi qu’une en C++. Pour faire la compression, le logiciel FFMPEG est utilisé en arrière-plan. Par la suite nous utiliserons FFMPEG pour décoder des vidéos, compresser des images en jouant sur les paramètres de compression ou encore conserver uniquement une partie d’une vidéo en temps et espace.
 
-### 2.2.2 Application de filtres
+### Application de filtres
 
 Dans cette partie nous allons montrer les résultats obtenus avec l’API Python.
 
@@ -65,11 +65,11 @@ Faisons la même chose sur une vidéo de météore.
 Dès l’application du filtre sur la norme et la zone nous arrivons à isoler le météore. En revanche dans la même vidéo il y a un éclair qui, même en appliquant les 3 filtres, reste visible. Nous pourrions appliquer des filtres plus forts mais nous risquons de ne plus détecter le météore.
 
 ![Image de météore](figure6.png)  
-*Figure 11 : Image de météore*
+*Image de météore*
 
 Par la suite, un algorithme de type *knapsack* pourra être implémenté. L’idée serait de maximiser une zone en faisant la somme des normes des vecteurs vitesse tout en minimisant le nombre de vecteurs utilisés et ainsi obtenir la zone de plus forte densité.
 
-## 2.3 API C++
+## API C++
 
 Notre projet ayant pour objectif d’utiliser le moins d’énergie possible, nous avons choisi de traduire le code Python en C++, ce dernier étant un langage de plus bas niveau et plus performant.
 
@@ -106,7 +106,7 @@ Enfin, nous avons comparé les temps d’exécution des versions Python et C++ e
 
 Comme attendu, la version C++ est nettement plus performante que celle en Python. Elle est presque 100 fois plus rapide que la version Python.
 
-## 2.4 Piste d'amélioration
+## Piste d'amélioration
 
 Pour optimiser davantage l´algorithme de d´etection de m´eteores et de filtrer plus efficacement
 les mouvements qui ont lieu sur les images, on pourrait envisager le ciblage sur le GPU embarqu´e

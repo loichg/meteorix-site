@@ -1,12 +1,40 @@
 # Conclusion
 
-Les objectifs du projet **Meteorix** permettent la détection efficace du mouvement dans les vidéos et l’amélioration de la qualité d’image à l’aide de **FlowNet** et de réseaux neuronaux. Grâce à l’intégration de ces technologies, nous avons pu isoler les parties pertinentes des séquences vidéo tout en améliorant visuellement les images.
+Les objectifs du projet Meteorix permettent la détection efficace du mouvement dans les vidéos et l'amélioration de la qualité d'image à l'aide du réseau de neurone FlowNet. Grâce à l'intégration de ces technologies, nous avons pu isoler les parties pertinentes des séquences vidéo tout en améliorant visuellement les images.
 
-Cependant, des défis subsistent, notamment en ce qui concerne la précision de la détection des météores dans certaines conditions. Les résultats obtenus avec **FlowNet** montrent que le modèle est capable de générer des flux optiques pertinents, mais des améliorations sont nécessaires pour mieux caractériser les mouvements rapides et spécifiques des météores.
+## Impacts éthiques/sociétaux
 
-Pour la suite du projet, nous prévoyons d’explorer les possibilités suivantes :
-1. **Fine-tuning** du modèle **FlowNet** avec un dataset spécifique aux météores pour améliorer la précision de la détection.
-2. Test de **FlowNet2**, une version plus avancée du réseau, pour voir si elle offre de meilleures performances.
-3. Optimisation des paramètres d’entrée (fps, résolution, recadrage) pour maximiser la qualité des résultats.
+**Préoccupations** :
 
-En conclusion, **Meteorix** représente une avancée significative dans la détection des météores et des débris spatiaux grâce à l’utilisation de technologies modernes de traitement d’images et d’apprentissage automatique. Les résultats obtenus jusqu’à présent sont prometteurs, et nous sommes confiants dans notre capacité à atteindre les objectifs fixés pour ce projet.aa
+- **Détournement à des fins militaires** : Il existe un risque d'utiliser la détection de météores dans des contextes de défense ou de guerre, ce qui pourrait mener à des applications militaires non souhaitées.
+- **Manipulation des résultats** : Il y a une possibilité de fausser les résultats concernant la caractérisation des météores, ce qui pourrait compromettre leur étude et leur gestion.
+- **Concurrence entre pays** : La compétition entre nations pour envoyer le plus grand nombre de nanosatellites pourrait mener à une nouvelle forme de guerre froide, générant ainsi une pollution accrue dans l'espace.
+
+**Bienfaits** :
+
+- **Réduction des déchets spatiaux** : Une meilleure compréhension des déchets spatiaux pourrait sensibiliser le public et les autorités, permettant ainsi de mieux les gérer et de réduire leur accumulation dans l'espace.
+- **Optimisation de l'environnement spatial** : Remplacer les satellites traditionnels par des nanosatellites offrirait un environnement plus propre et permettrait d'optimiser l'utilisation de l'énergie, ce qui pourrait améliorer les résultats scientifiques.
+- **Réduction de l'impact écologique** : Utiliser des matériaux en quantités limitées pour construire des nanosatellites permettrait de réduire la pollution liée à l'extraction des ressources naturelles nécessaires à leur fabrication.
+- **Avancées technologiques** : La contrainte énergétique dans la conception des nanosatellites pousse à des innovations technologiques majeures, permettant d'effectuer une multitude d'opérations dans l'espace tout en utilisant peu de ressources.
+
+## Pistes de recherche pour la suite
+
+**Pour Motion Vector Extractor** :
+1. Réessayer d'adresser le GPU Radeon (identique à la puce spatiale) pour des tests en conditions réelles
+2. Développer une fonction multi-images pour vérifier la cohérence des vecteurs sur plusieurs frames
+3. Étendre l'analyse PCA avec plus de vidéos testées
+4. Implémenter un algorithme de type knapsack pour l'optimisation des zones d'intérêt
+
+**Pour FlowNet** :
+1. Tester FlowNet2 avec ses architectures optimisées
+2. Réentraîner FlowNetCorr avec les learning rates de FlowNet2
+3. Étendre le dataset de météores :
+   - Améliorer la qualité du détourage des motifs
+   - Générer des paires de motifs (motifA/motifB) au lieu d'un seul motif translaté
+   - Créer synthétiquement des motifs avec variations d'opacité
+   - Ajouter des transformations aléatoires (bruit gaussien, etc.) comme dans Flying Chairs
+4. Explorer les articles récents sur la génération de datasets (ex: Flying Things 3D)
+
+**Documentation** :
+- Compléter l'analyse par la lecture de l'article FlowNet2
+- Référencer les avancées récentes en flot optique pour les petits objets

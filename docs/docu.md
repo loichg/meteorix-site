@@ -1,20 +1,20 @@
-# 5 Documentation pour Flownet
+# Documentation pour Flownet
 
 Avant de commencer à implémenter et tester le réseau, nous avons commencer par nous documenter sur le réeseau et comment fonctionne t-il. Nos sources sont citées dans la bibliographie.
 
-## 5.1 Généralités
+## Généralités
 
 Le but de cette section est d’introduire des notions générales afin de mieux comprendre FlowNet.
 
-### 5.1.1 Définitions utiles
+### Définitions utiles
 
 Dans cette section nous définissons des termes retrouvées très souvent dans d’autres parties. Il serait peut-être intéressant de lire une première fois ces définitions puis d’y revenir souvent en lisant le reste de la documentation.
 
 **Canal (ou "feature map")** :  
 Classiquement, le canal est une des trois images élémentaires qui composent une image couleur (voir illustration ci-dessous). Néanmoins, en traitement d’images (et notamment dans notre cas) il est possible d’étendre la définition de canal. Un canal est alors une couche de l’image apportant des informations sur celle-ci (donc pas nécessairement la couleur). Par exemple, un canal peut représenter les contours de l’image, un autre peut représenter les zones lumineuses de l’image... En général, un canal représente une caractéristique de l’image. Dans un CNN, en pratique, un canal est une matrice. Les canaux peuvent aussi être appelés patch.
 
-![Image couleur](img/flownet/canaux-image.png)  
-*Figure 33 : Canaux d’une image*
+![Image couleur](figure13.png)  
+*Canaux d’une image*
 
 - **Coarse feature** : Un canal à l’intérieur du réseau qui contient les informations de l’image de manière "grossière" (coarse en anglais) avant le produit rendu par le réseau.
 - **Pooling** : Une étape dans les réseaux de neurone type CNN où la taille des features sont réduites petit à petit pour extraire les données voulues.
@@ -34,30 +34,43 @@ Classiquement, le canal est une des trois images élémentaires qui composent un
 
   Pour calculer l’EPE d’une image entière, une moyenne est calculée sur tout les EPEs.
 
-### 5.1.2 Flot optique
+## Flux optique
 
-À partir des images avec la zone d’intérêt extraites grâce à MVE, nous allons maintenant chercher à calculer le flot optique.
+À partir des images avec la zone d’intérêt extraites grâce à **Motion Vector Extractor (MVE)**, nous allons maintenant chercher à calculer le flux optique.
 
-On considère l’application I qui quantifie l’intensité lumineuse d’un pixel dans une des images (en faisant la simplification que l’image est en nuances de gris par exemple). L’intensité lumineuse d’un pixel de coordonnées (x, y) à l’instant t est donc donnée par I(x, y, t).  
-Dans la suite de cette partie on cherche à déterminer le flux optique entre 2 images succesives séparées d’un délais de dt.
+On considère l’application \( I \) qui quantifie l’intensité lumineuse d’un pixel dans une des images (en faisant la simplification que l’image est en nuances de gris par exemple). L’intensité lumineuse d’un pixel de coordonnées \( (x, y) \) à l’instant \( t \) est donc donnée par \( I(x, y, t) \).
 
-Premièrement, il est nécessaire de faire l’hypothèse d’illumination constante qui consiste à dire que :  
-\[ I(x + dx, y + dy, t + dt) = I(x, y, t) \]
+Dans la suite de cette partie, on cherche à déterminer le flux optique entre 2 images successives séparées d’un délai de \( dt \).
 
-Par ailleurs on peut appliquer la formule de Taylor à l’ordre 1 sur I pour dx, dy, dt proches de 0 :  
-\[ I(x + dx, y + dy, t + dt) = I(x, y, t) + \frac{\partial I}{\partial x}(x, y, t) \, dx + \frac{\partial I}{\partial y}(x, y, t) \, dy + \frac{\partial I}{\partial t}(x, y, t) \, dt \]
+Premièrement, il est nécessaire de faire l’hypothèse d’illumination constante, qui consiste à dire que :
 
-Or, d’après l’hypothèse qu’on a faite, on obtient :  
-\[ \frac{\partial I}{\partial x}(x, y, t) \, dx + \frac{\partial I}{\partial y}(x, y, t) \, dy + \frac{\partial I}{\partial t}(x, y, t) \, dt = 0 \]
+\[
+I(x + dx, y + dy, t + dt) = I(x, y, t)
+\]
 
-D’où en "divisant" par dt (non nul) on a :  
-\[ \frac{\partial I}{\partial x}(x, y, t) \, \frac{dx}{dt} + \frac{\partial I}{\partial y}(x, y, t) \, \frac{dy}{dt} + \frac{\partial I}{\partial t}(x, y, t) = 0 \]
+Par ailleurs, on peut appliquer la formule de Taylor à l’ordre 1 sur \( I \) pour \( dx, dy, dt \) proches de 0 :
 
-Depuis cette équation on peut définir le vecteur de flux optique au point (x, y) à l’instant t qui correspond au vecteur u = (dx/dt, dy/dt). Ce dernier peut-être vu comme comme le vecteur vitesse du point image (x, y) à l’instant t.
+\[
+I(x + dx, y + dy, t + dt) = I(x, y, t) + \frac{\partial I}{\partial x}(x, y, t) \, dx + \frac{\partial I}{\partial y}(x, y, t) \, dy + \frac{\partial I}{\partial t}(x, y, t) \, dt
+\]
 
-**Conclusion** : On peut interpréter le flux optique entre 2 images successives comme étant l’ensemble des vecteurs vitesses à l’instant t associés à chaque point image. Plus généralement, dans une vidéo, on peut considérer que le flux optique est la vitesse de chaque point image (fonction à 2 composantes) en faisant l’hypothèse de l’illumination constante.
+Or, d’après l’hypothèse d’illumination constante, on obtient :
 
-### 5.1.3 Définition CNN
+\[
+\frac{\partial I}{\partial x}(x, y, t) \, dx + \frac{\partial I}{\partial y}(x, y, t) \, dy + \frac{\partial I}{\partial t}(x, y, t) \, dt = 0
+\]
+
+En divisant par \( dt \) (non nul), on a :
+
+\[
+\frac{\partial I}{\partial x}(x, y, t) \frac{dx}{dt} + \frac{\partial I}{\partial y}(x, y, t) \frac{dy}{dt} + \frac{\partial I}{\partial t}(x, y, t) = 0
+\]
+
+On peut définir le vecteur de flux optique au point \( (x, y) \) à l’instant \( t \) qui correspond au vecteur \( \mathbf{u} = \left( \frac{dx}{dt}, \frac{dy}{dt} \right) \). Ce dernier peut être vu comme le vecteur vitesse du point image \( (x, y) \) à l’instant \( t \).
+
+On peut interpréter le flux optique entre 2 images successives comme étant l’ensemble des vecteurs vitesses à l’instant \( t \) associés à chaque point image. Plus généralement, dans une vidéo, on peut considérer que le flux optique est la vitesse de chaque point image (fonction à 2 composantes) en faisant l’hypothèse de l’illumination constante.
+
+### Définition CNN
 
 Un CNN est un cas particulier de réseau de neurones. En effet, il présente comme les autres réseaux une couche d’entrée (qui correspondra à l’image d’entrée) et une couche de sortie (qui correspondra en général à une couche de classification)[^1]. Les CNN présentent 3 types de couche : les couches de convolution, les couches de pooling et les couches entièrement connectée (FC)[^2]:
 
@@ -72,7 +85,7 @@ Finalement, on notera que la force des CNN pour le traitement d’image (par rap
 [^1]: FlowNet, lui, n’est pas un classifier, sa sortie correspond bien à une image c’est une différence significative par rapport aux CNN classiques.
 [^2]: FlowNet semble remplacer ces couches par l’étape de "refinement" (voir la figure 1 plus bas) pour obtenir une image en sortie plutôt qu’une classification.
 
-### 5.1.4 Apprentissage
+### Apprentissage
 
 #### Descente de gradient :
 
@@ -138,15 +151,15 @@ L’algorithme d’ADAM est un algorithme qui modifie le learning rate pour opti
 [^6]: avec FlowNet nous avons comme fonction d’activation ReLU
 [^7]: Le learning rate diminuant moins, dans le cas de FlowNet, on voit que l’algorithme est lancé plusieurs fois avec des learning rate différents
 
-## 5.2 Flownet
+## Flownet
 
-### 5.2.1 Architecture de Flownet
+### Architecture de Flownet
 
 FlowNet est un réseau de neurone qui n'a pas eu besoin d'un dataset réaliste pour avoir des résultats intéressants. Le réseau est capable de généraliser et il est même meilleur que certaines méthodes à la pointe (à ce moment-là) tel que Deepflow et Epicflow sur ses données d'entraînement. Le code source est disponible dans la bibliographie.
 
 Pour calculer le flot optique, la taille des entrées et sorties étant très grande, les couches de pooling sont nécessaires pour la praticité du réseau de neurones. De plus, nous en avons besoin pour pouvoir agréger des parties de l'image en flux "globaux" optique. Faire du pooling réduit la résolution de l'image, nous avons donc une partie du réseau qui "pool", la partie contractive. Puis, la deuxième partie du réseau réaugmente la taille de l'image (pour pouvoir fournir le flot optique demandé), la partie expansive dite de "refinement". Ce réseau est entraîné en tant qu'une seule entité (pas d'entraînement différents entre les deux parties), par rétropropagation du gradient (nous en parlerons dans une autre section).
 
-### 5.2.2 Partie contractive
+### Partie contractive
 
 #### FlownetSimple
 Les deux images sont données dans la même entrée au réseau et il cherche "seul" la correspondance entre les deux images et le flux optique. Plus précisément, on "superpose" les deux images dans 6 canaux.
@@ -179,7 +192,7 @@ Pour pallier à ce problème, une limitation sur le décalage entre x₁ et x₂
 
 La corrélation est de dimension 4 et pour chaque combinaison de position on a une valeur de corrélation. En pratique, le déplacement relatif est organisé dans D² canaux de taille w × h. Pour l'apprentissage, les derivatives sont implémentées en connaissant les données d'entrées.
 
-### 5.2.3 Partie expansive
+### Partie expansive
 
 **Upconvolutionnal layer** : le principe est d'étendre (en largeur et hauteur) les feature maps à la fin de la partie contractive. Pour cela on fait un **bed of nails** et une convolution avec un masque de notre entrée (la fin de notre partie contractive), puis une concaténation avec des feature map de la partie contractive **gardées en mémoire**.
 
@@ -190,7 +203,7 @@ Les données sauvegardées des précédentes convolutions sont utilisées comme 
 **Variante (+v)** :  
 Le "coarse to fine scheme" est un algorithme qui permettrait de diminuer l'erreur d'un flux optique généré, par exemple, par un CNN et l'affiner. Ils expliquent qu'ils ont pris en compte le léger changement de couleur et de luminosité pour diminuer l'erreur. A partir de la sortie donnée du réseau de neurone, il ont utilisé le "coarse to fine scheme" pour augmenter la taille de l'image jusqu'à la taille initiale (sur 20 itérations) et affiner le flux (sur 5 itérations).
 
-### 5.2.4 Entrainement
+### Entrainement
 
 FlowNet étant novateur (à ce moment-là) et le flot optique étant compliqué à calculer avec des images réelles, trouver des données d'entrainement adaptées est difficile.
 
@@ -222,7 +235,7 @@ Pour éviter le problème de l'overfitting, la data augmentation a été utilis�
 
 Les transformations ont été faites sur la paire d'images entière et entre les deux images de chaque paire (avec des modifications plus petites, les détails sont dans l'article).
 
-### 5.2.5 Détails pratiques sur le réseau
+### Détails pratiques sur le réseau
 
 FlowNet est composée de 9 couches de convolution. Parmi ces couches de convolution, 6 d'entre elles effectuent aussi du pooling avec la méthode du stride of 2 où la taille des feature maps est divisée par 2 et le nombre de feature maps est multiplié par 2. Un ReLU est présent après chaque couche de convolution. De plus, on peut avoir en entrée du réseau une taille variable entre les paires d'images car il n'y a pas de couches complètement connectées (FC).
 
@@ -255,7 +268,7 @@ L'algorithme Adam a été utilisé pour l'entraînement. C'est l'algorithme util
 **Fine-tuning (+ft)** :  
 Les données MPISintel ont été utilisées pour le fine-tuning avec un learning rate très faible pour un nombre d'itérations optimal obtenu empiriquement (pendant l'entraînement).
 
-### 5.2.6 Résultats dans l'article
+### Résultats dans l'article
 
 FlowNet est testé sur Sintel, Kitti, Middlebury et Flying chairs. Pour pouvoir comparer les données, ils utilisent le average end-to-end point error (erreur standard pour l'estimation du flux optique) ce qui correspond à la distance euclidienne entre, le flux trouvé et le véritable flux, moyennée sur tous les pixels. Plus le chiffre (EPE) est faible, plus le résultat de FlowNet est proche de la réalité et plus on peut considérer que FlowNet est performant.
 
@@ -267,6 +280,6 @@ En général, on peut observer que FlowNet n'est pas le plus performant sur les 
 **Remarque 3** :  
 *D'après ses concepteurs, FlowNet semble être performant pour détecter les "détails" sur les images.*
 
-### 5.2.7 Remarque sur FlowNet2
+### Remarque sur FlowNet2
 
 Le but de l'article de FlowNet2 est d'optimiser au maximum l'EPE de FlowNet1 en explorant différents changements. FlowNetCorr a été réentrainé et donne de meilleurs résultats avec l'entraînement spécifié dans le deuxième article sur FlowNet avec les datasets Flying Chairs et Flying Thing 3D. Aussi, différentes architectures ont été testées où l'architecture "de base" de FlowNet a été dupliqué et "concaténé" avec diverses changements.
