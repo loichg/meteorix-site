@@ -9,4 +9,4 @@ Pour la suite du projet, nous prévoyons d’explorer les possibilités suivante
 2. Test de **FlowNet2**, une version plus avancée du réseau, pour voir si elle offre de meilleures performances.
 3. Optimisation des paramètres d’entrée (fps, résolution, recadrage) pour maximiser la qualité des résultats.
 
-En conclusion, **Meteorix** représente une avancée significative dans la détection des météores et des débris spatiaux grâce à l’utilisation de technologies modernes de traitement d’images et d’apprentissage automatique. Les résultats obtenus jusqu’à présent sont prometteurs, et nous sommes confiants dans notre capacité à atteindre les objectifs fixés pour ce projet.
+En conclusion, **Meteorix** représente une avancée significative dans la détection des météores et des débris spatiaux grâce à l’utilisation de technologies modernes de traitement d’images et d’apprentissage automatique. Les résultats obtenus jusqu’à présent sont prometteurs, et nous sommes confiants dans notre capacité à atteindre les objectifs fixés pour ce projet.aa

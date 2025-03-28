@@ -1,23 +1,16 @@
 site_name: Meteorix
 nav:
   - Introduction: index.md
-  - Détection de météores: detection_meteores.md
-  - Environnement d'exécution: environnement_execution.md
-  - Encodage vidéo: encodage_video.md
-  - FFMPEG: ffmpeg.md
-  - Utilisation FFMPEG : Utilisation FFMPEG.ipynb
-  - Motion Vector Extractor: motion_vector_extractor.md
-  - Utilisation MVE : Utilisation MVE.ipynb
-  - Flux optique: flux_optique.md
-  - Définition CNN: definition_cnn.md
-  - Apprentissage: apprentissage.md
-  - Définition utiles: definition_utiles.md
-  - Flownet: flownet.md
-  - Résultats FlowNet: resultats_flownet.md
+  - Algorithme de détection: detection.md
+  - Environnement d'éxécution : env.md
+  - Paramètre de compression : param.md
+  - Documentation pour Flownet: docu.md
+  - Inférence de Flownet: inf.md
+  - Génération d'une base de données: gen.md
   - Conclusion: conclusion.md
-  - Impacts éthiques/sociétaux: impacts_ethiques_societaux.md
-  - Références: references.md
   - Annexes: annexes.md
+  - Utilisation FFMPEG : Utilisation FFMPEG.ipynb
+  - Utilisation MVE : Utilisation MVE.ipynb
 theme: material
 
 markdown_extensions:
