@@ -11,6 +11,7 @@ nav:
   - Annexes: annexes.md
   - Utilisation FFMPEG : Utilisation FFMPEG.ipynb
   - Utilisation MVE : Utilisation MVE.ipynb
+  - Implémentation Flownet sur em780 : implem.md
 theme: material
 
 markdown_extensions:
@@ -31,3 +32,6 @@ extra_javascript:
 plugins:
   - mkdocs-jupyter
   
+extra_css:
+  - extra.css
+  - custom.css

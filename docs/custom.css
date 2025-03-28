@@ -1,0 +1,40 @@
+.md-header {
+    display: none;
+}
+
+.md-footer {
+    display: none;
+}
+
+/* Masquer la navigation à gauche */
+.md-sidebar--primary {
+    display: none;
+}
+
+/* Masquer la navigation à droite */
+.md-sidebar--secondary {
+    display: none;
+}
+
+/* Agrandir la barre de navigation */
+.md-header {
+    height: 80px; /* Ajustez la hauteur selon vos préférences */
+    padding: 10px 0; /* Ajoute un peu d'espace autour du contenu */
+}
+
+/* Changer le fond de la barre en beige */
+.md-header {
+    background-color: #f5f5dc; /* Couleur beige */
+}
+
+/* Ajuster la taille du texte dans la barre de navigation */
+.md-header-nav__title {
+    font-size: 1.2rem; /* Ajustez la taille du texte */
+}
+
+/* Centrer le contenu de la barre de navigation */
+.md-header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
