@@ -1,4 +1,4 @@
-# Annexes
+# Résultats de FlowNetCorr
 
 | Taille des img | Nb d'img | CPU/GPU | Résultat      | Temps mis | Nb de frame par sec calculée |
 |----------------|---------:|---------|---------------|-----------|------------------------------|
