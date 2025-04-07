@@ -11,6 +11,7 @@ nav:
   - Utilisation FFMPEG : Utilisation FFMPEG.ipynb
   - Utilisation MVE : Utilisation MVE.ipynb
   - Implémentation Flownet sur em780 : implem.md
+  - Résultats de FlowNetCorr : annexes.md
 theme: material
 
 markdown_extensions:
