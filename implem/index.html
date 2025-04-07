@@ -1,0 +1,807 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Utilisation%20MVE/">
+      
+      
+        <link rel="next" href="../annexes/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Implémentation Flownet sur em780 - Meteorix</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#flownet-sur-em780-python-3123" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Meteorix" class="md-header__button md-logo" aria-label="Meteorix" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meteorix
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Implémentation Flownet sur em780
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Meteorix" class="md-nav__button md-logo" aria-label="Meteorix" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meteorix
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorithme de détection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environnement d'éxécution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../param/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Paramètre de compression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Documentation pour Flownet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inférence de Flownet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Génération d'une base de données
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Utilisation%20FFMPEG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utilisation de ffmpeg dans le projet Meteorix
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Utilisation%20MVE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Détection des météores en utilisant mv-extractor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Implémentation Flownet sur em780
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Implémentation Flownet sur em780
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-du-projet-et-des-librairies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation du projet et des librairies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mise-en-forme-des-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mise en forme des images
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lancement-de-linference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lancement de l’inférence
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualisation-du-flot-optique-grace-a-des-vecteurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualisation du flot optique grâce à des vecteurs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrainement-a-partir-de-larchitecture-mpi_sintel_clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrainement à partir de l’architecture « mpi_sintel_clean »
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annexes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Résultats de FlowNetCorr
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-du-projet-et-des-librairies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation du projet et des librairies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mise-en-forme-des-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mise en forme des images
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lancement-de-linference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lancement de l’inférence
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualisation-du-flot-optique-grace-a-des-vecteurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualisation du flot optique grâce à des vecteurs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrainement-a-partir-de-larchitecture-mpi_sintel_clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entrainement à partir de l’architecture « mpi_sintel_clean »
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="flownet-sur-em780-python-3123">FlowNet sur em780 (Python 3.12.3)</h1>
+<h2 id="installation-du-projet-et-des-librairies">Installation du projet et des librairies</h2>
+<p>Copie du projet FlowNet :<br />
+- Copie du code dans le répertoire « FlowNetPytorch » :<br />
+  Cloner le projet depuis<br />
+  https://github.com/paul-pp/flownet<br />
+- Copie du modèle pré-entrainé dans le répertoire « trained_model » :<br />
+  Télécharger un des fichiers (depuis le répertoire Pytorch).pth avec ce lien<br />
+  https://drive.google.com/drive/folders/16eo3p9dO_vmssxRoZCmWkTpNjKRzJzn5  </p>
+<p>Créer un répertoire « erntest » :  </p>
+<p>Dans ce répertoire, il faut copier des paires d’images. Pour cela, il faut que les 2 images d’une paire proviennent d’une même vidéo (séparées d’un petit intervalle de temps) et soient de même dimension. Celles-ci doivent être nommées de la manière suivante :<br />
+<code>&lt;nom_de_la_paireA&gt;1.&lt;extension&gt;</code>, <code>&lt;nom_de_la_paireA&gt;2.&lt;extension&gt;</code>, <code>&lt;nom_de_la_paireB&gt;1.&lt;extension&gt;</code>, <code>&lt;nom_de_la_paireB&gt;2.&lt;extension&gt;</code>,...  </p>
+<p>Copie du projet sur le front : (en local)<br />
+- Copie du code :<br />
+<code>scp -r FlowNetPytorch front.mono.lip6.ext:~/</code><br />
+- Copie d’un modèle pré-entrainé :<br />
+<code>scp -r trained_model front.mono.lip6.ext:~/</code><br />
+- Copie des images dont on cherche le flux optique :<br />
+<code>scp -r erntest front.mono.lip6.ext:~/</code>  </p>
+<p>Connexion à la machine em780 : (en local)<br />
+<code>ssh em780.mono.lip6.ext</code>  </p>
+<p>Déplacement du projet sur scratch : (depuis <code>/nfs/users/&lt;username&gt;-nfs</code>)<br />
+<code>mv FlowNetPytorch /scratch/&lt;username&gt;-nfs/code_source_pytorch/</code><br />
+<code>mv trained_model/ /scratch/&lt;username&gt;-nfs/code_source_pytorch/</code> 
+<code>mv emtest /scratch/&lt;username&gt;-nfs/images_tests/</code></p>
+<p>Création d’un environnement python et activation: (depuis/scratch/&lt;\username&gt;-nfs/code_source_pytorch)
+- Création :
+<code>python3 -m venv venv-flownet</code>
+- Activation :
+<code>source venv-flownet/bin/activate</code></p>
+<p>Installation des librairies nécessaires dans l’environnement : (depuis/scratch/&lt;\username&gt;-nfs/code_source_pytorch et lorsque «venv-flownet» estactivé)
+<code>pip3 install -r FlowNetPytorch/requirements.txt</code></p>
+<p>Visualisation des versions des librairies avec « pip3 list »:</p>
+<p><img alt="fig" src="../figure26.png" />  </p>
+<p><img alt="fig" src="../figure27.png" />  </p>
+<p>Désactiver l’environnement virtuel :
+<code>$deactivate</code></p>
+<h2 id="mise-en-forme-des-images">Mise en forme des images</h2>
+<p>Pour extraire des images et les modifier, nous avons utilisé des commandes ffmpeg. Nous avons aussi essayé d’automatiser les tests sans succès : nous devions repérer le météore à l’oeil nu pour pouvoir récupérer les frames intéressantes et crop les images au bon endroit.</p>
+<p>Voici les commandes ffmpeg utilisées qui pourraient être intéressantes dans le cadre de ce projet :</p>
+<ul>
+<li>Pour créer une vidéo :<br />
+<code>ffmpeg -r 5 -i Path/to/img/flow%02d.png -vcodec libx264 -crf 25 output.mp4</code>  </li>
+<li><code>-r 5</code> : le fps (5 frames par seconde)  </li>
+<li><code>-i Path/to/img/flow%02d.png</code> : les images. ffmpeg a besoin d’une image de « début » entre 0 et 4. Ici le format est toutes les images entre <code>flow00.png</code> à <code>flow99.png</code>.  </li>
+<li><code>-vcodec libx264</code> : le codec vidéo utilisé.  </li>
+<li><code>-crf 25</code> : la qualité de la vidéo. Pour x264, les valeurs raisonnables sont entre 18 et 28.  </li>
+<li>
+<p><code>output.mp4</code> : le nom du fichier de sortie.  </p>
+</li>
+<li>
+<p>Pour redimensionner une vidéo :<br />
+<code>ffmpeg -i input.mp4 -vf scale=1920:1080 output.mp4</code><br />
+  (ici en 1920x1080)  </p>
+</li>
+<li>
+<p>Pour crop une image :<br />
+<code>ffmpeg -i input.mp4 -vf "crop=448:320:0:0" output.mp4</code>  </p>
+</li>
+<li><code>448:320</code> : dimensions du crop (abscisse puis ordonnée).  </li>
+<li>
+<p><code>0:0</code> : emplacement du coin du crop en haut à gauche (ici le crop sera fait le plus en haut à gauche possible ; abscisse puis ordonnée).<br />
+  Cette commande fonctionne aussi avec des images.  </p>
+</li>
+<li>
+<p>Pour récupérer des informations sur une vidéo :<br />
+<code>ffmpeg -i input.mp4</code>  </p>
+</li>
+<li>
+<p>Pour transformer une vidéo de couleur à en nuance de gris :<br />
+<code>ffmpeg -i input.mp4 -vf hue=s=0 output.mp4</code>  </p>
+</li>
+<li>
+<p>Pour récupérer des images d’une vidéo :<br />
+<code>ffmpeg -i input.mp4 -s start -t end &lt;dossier&gt;/frame%03d.png</code>  </p>
+</li>
+</ul>
+<p>Aussi, nous avons écrit des scripts python pour dupliquer et renommer les images correctement pour pouvoir les tester, disponibles dans le dossier :<br />
+<code>/scratch/&lt;username&gt;-nfs/code_source_pytorch/FlowNetPytorch</code>.<br />
+Il serait aussi possible de changer directement le code de FlowNet pour adapter l’entrée. Pour les utiliser, nous avons besoin de la librairie <code>os</code>, <code>sys</code> et <code>shutil</code> de python.  </p>
+<p>Le <code>renameforflownet.py</code> permet de dupliquer et changer le nom des images de « <code>frame%03d.png</code> » à « <code>paire%03d_1.png</code> » et « <code>paire%03d_2.png</code> » (avec des conditions aux bords).<br />
+Commande :<br />
+<code>python renameforflownet.py Path/to/img start end</code><br />
+- <code>Path/to/img</code> : le dossier où sont les images.<br />
+- <code>start</code> : la première frame (le nombre) dont on veut calculer le flot optique.<br />
+- <code>end</code> : la dernière frame dont on veut calculer le flot optique.  </p>
+<p>Le <code>renamefromflower.py</code> permet de modifier le nom des images en sorties pour pouvoir créer une vidéo avec la commande ffmpeg nécessaire.<br />
+Commande :<br />
+<code>python renamefromflower.py Path/to/img start end</code><br />
+- <code>Path/to/img</code> : le dossier où sont les images.<br />
+- <code>start</code> : la première frame (le nombre) dont on a calculé le flot optique.<br />
+- <code>end</code> : la dernière frame dont on a calculé le flot optique.  </p>
+<h2 id="lancement-de-linference">Lancement de l’inférence</h2>
+<p>Activer l’environnement « venv-flownet » : (depuis <code>/scratch/&lt;username&gt;-nfs/code_source_pytorch</code>)<br />
+<code>source venv-flownet/bin/activate</code>  </p>
+<p>Lancer l’inférence : (depuis <code>/scratch/&lt;username&gt;-nfs/code_source_pytorch</code>)<br />
+<code>python3 FlowNetPytorch/run_inference.py /scratch/&lt;username&gt;-nfs/images_tests/emtest trained_model/flownets_EPE1.951.pth</code>  </p>
+<p>Remarques :  </p>
+<ul>
+<li>Le 1er chemin correspond au script python permettant l’inférence du modèle pré-entrainé situé au 3ᵉ chemin. Les images en entrée sont situées dans le 2ᵉ chemin.  </li>
+<li>
+<p>Si vous tentez de lancer la commande précédente dans un répertoire qui ne vous appartient pas, il est probable que vous ayez une erreur (de droit d’écriture dans le dossier d’un utilisateur externe) car le programme doit enregistrer l’image de flux optique dans le dossier « entest » qui appartient à l’utilisateur ayant le code source. Pour éviter cela, il faudrait que vous copiez le dossier entest dans votre répertoire avec la paire d’images à tester. Et vous pourrez relancer la commande suivante :<br />
+<code>python3 FlowNetPytorch/run_inference.py /scratch/&lt;votre_username&gt;-nfs/images_tests/entest trained_model/flownets_EPE1.951.pth</code>  </p>
+</li>
+<li>
+<p>L’option <code>-g</code> (<code>--gpu</code>) (et respectivement <code>-c</code> (<code>--cpu</code>)) permet de forcer le lancement de FlowNet sur le GPU (respectivement sur le CPU). Par défaut, si le GPU existe, l’inférence sera lancée sur GPU. Un exemple de commande pour lancer sur CPU uniquement pourrait être :<br />
+<code>python3 FlowNetPytorch/run_inference.py /scratch/&lt;username&gt;-nfs/images_tests/entest trained_model/flownets_EPE1.951.pth -c</code>  </p>
+</li>
+<li>
+<p>L’option <code>-v</code> (<code>--output-value</code>) permet de spécifier le type de sortie pour le flot optique désiré. Il y a 2 types de sorties possibles :  </p>
+</li>
+<li>Le type « raw » est un fichier de sortie de type « .npy » qui correspond à un tableau stockant le flot optique (de 2 frames successives).  </li>
+<li>
+<p>Le type « viz » est une image (de format png par exemple) qui correspond à la représentation en couleur du flot optique entre 2 frames successives.<br />
+  Enfin, si vous spécifiez « both », le programme génère automatiquement les types « raw » et « viz » simultanément (option par défaut). Voici un exemple de commande pour générer que des visualisations en couleur du flot optique :<br />
+<code>python3 FlowNetPytorch/run_inference.py /scratch/&lt;username&gt;-nfs/images_tests/entest trained_model/flownets_EPE1.951.pth -v viz</code>  </p>
+</li>
+<li>
+<p>Si plusieurs paires d’images sont présentes dans le dossier entest, <code>run_inference.py</code> les traitera toutes.  </p>
+</li>
+</ul>
+<p>On obtient la sortie suivante pour cpu :</p>
+<p><img alt="fig" src="../figure28.png" />  </p>
+<p>On obtient la sortie suivante pour gpu :</p>
+<p><img alt="fig" src="../figure29.png" />  </p>
+<p>Remarque : run_inferencecpu.py diffère que d’une seule ligne par rapport à run_inferencegpu.py (voir ligne 122 environ, variable network_data)</p>
+<p>Désactiver l’environnement « venv-flownet» : (depuis /scratch/&lt;\username&gt;-nfs/code_source_pytorch)
+<code>$deactivate</code></p>
+<p>Récupérer l’/les image/s de flot optique générée/s :
+- depuis /scratch/&lt;\username&gt;-nfs :
+<code>cp images_tests/emtest/flow/imagetest_flow.png /nfs/users/&lt;\username&gt;-nfs/</code>
+- en local :
+<code>scp front.mono.lip6.ext:~/imagetest_flow.png /Users/&lt;le-chemin-en-local&gt;</code></p>
+<h2 id="visualisation-du-flot-optique-grace-a-des-vecteurs">Visualisation du flot optique grâce à des vecteurs</h2>
+<p>Une fois l’inférence lancée sur des paires d’images, il peut être intéressant de visualiser le flot optique à l’aide de vecteurs. Pour cela, il y a le fichier <code>visu_vector.py</code> dans le dossier <code>/scratch/&lt;username&gt;-nfs/code_source_pytorch/FlowNetPytorch</code>. On peut lancer la commande suivante sur le dossier « emtest » (depuis <code>/scratch/&lt;username&gt;-nfs/code_source_pytorch</code>) :  </p>
+<p><code>python3 FlowNetPytorch/visu_vector.py -f /scratch/&lt;username&gt;-nfs/images_tests/emtest -b 145 -e 178 --arrow_size 1 --arrow_segmentation 2</code>  </p>
+<p>Remarques :  </p>
+<ul>
+<li>Attention, cela implique d’avoir lancé <code>run_inference.py</code> avant en mode « raw » sur le dossier emtest.  </li>
+<li>Il est nécessaire que les paires d’images du dossier « emtest » soient nommées de la manière suivante avant l’inférence : <code>paire1_1.png</code>, <code>paire1_2.png</code>, <code>paire2_1.png</code>, <code>paire2_2.png</code>, <code>paire3_1.png</code>, etc.  </li>
+<li>Si aucune flèche jaune n’apparaît sur les images en sortie, il faut augmenter <code>--arrow_size</code>.  </li>
+<li>L’option obligatoire <code>-f</code> (<code>--folder</code>) permet de spécifier le chemin du dossier contenant les paires d’images qui ont été traitées par l’inférence en mode « viz ».  </li>
+<li>L’option <code>-b</code> (<code>--begin_frame</code>) (respectivement <code>-e</code> (<code>--end_frame</code>)) permet de spécifier la première paire d’images à traiter (resp. la dernière).  </li>
+<li>L’option <code>--arrow_size</code> permet de régler la taille des flèches sur les images en sorties (prend des valeurs décimales).  </li>
+<li>L’option <code>--arrow_segmentation</code> (prend que des entiers) permet de régler l’espacement entre chaque flèche. Plus la valeur est grande, plus les flèches seront espacées (moins il y en aura dans l’image).  </li>
+</ul>
+<h2 id="entrainement-a-partir-de-larchitecture-mpi_sintel_clean">Entrainement à partir de l’architecture « mpi_sintel_clean »</h2>
+<p>L’entrainement sert à créer son propre modèle avec ses propres poids à partir d’un jeu de données d’entrainement. Ce modèle sera ensuite utilisé de la même manière que « flownets_EPE1.951.pth » qu’on retrouve dans les paramètres de « run_inference.py ».  </p>
+<p>Pour effectuer l’entrainement, on supposera que le jeu de données utilisé respecte l’arborescence du dataset « mpi_sintel_clean », c’est-à-dire que le dataset soit de la forme :  </p>
+<p><img alt="fig" src="../figure30.png" />  </p>
+<p>On peut ainsi lancer l’entrainement sur le dataset « dataset_syn » de la manière suivante :  </p>
+<p><code>python3 /scratch/&lt;username&gt;-nfs/code_source_pytorch/FlowNetPytorch/main.py /scratch/&lt;username&gt;-nfs/gen_dataset/dataset_syn -b8 -j8 -a flownets --dataset mpi_sintel_clean --epochs 60 --split-value 0.95</code>  </p>
+<ul>
+<li><code>"/scratch/&lt;username&gt;-nfs/gen_dataset/dataset_syn"</code> est le chemin du dataset utilisé.  </li>
+<li><code>-b8</code> indique que le nombre de paires d’images utilisées pour un batch (1 batch ≈ 1 unité d’apprentissage) est de 8.  </li>
+<li><code>-j8</code> indique que le nombre de « travailleurs » (lors de la présence de GPU) est de 8 (utile pour paralléliser l’apprentissage).  </li>
+<li><code>-a flownets</code> indique qu’on utilise FlowNetSimple pour l’apprentissage (et pas FlowNetCorr ou d’autres architectures par exemple).  </li>
+<li><code>--dataset mpi_sintel_clean</code> indique qu’on utilise un dataset utilisant la même arborescence que « mpi_sintel_clean ».  </li>
+<li><code>--epochs 60</code> initialise le nombre d’epochs à 60. L’apprentissage sera donc effectué 60 fois de suite sur le même dataset.  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

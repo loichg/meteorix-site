@@ -1,0 +1,728 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../docu/">
+      
+      
+        <link rel="next" href="../gen/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Inférence de Flownet - Meteorix</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#inference-de-flownet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Meteorix" class="md-header__button md-logo" aria-label="Meteorix" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meteorix
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inférence de Flownet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Meteorix" class="md-nav__button md-logo" aria-label="Meteorix" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meteorix
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorithme de détection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environnement d'éxécution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../param/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Paramètre de compression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Documentation pour Flownet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Inférence de Flownet
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inférence de Flownet
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#donnees-testees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Données testées
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorties-du-reseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sorties du réseau
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Résultats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Résultats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reduction-dimage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Réduction d'image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coupage-et-mise-en-nuance-de-gris-de-limage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coupage et mise en nuance de gris de l'image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limites-des-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limites des tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Génération d'une base de données
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Utilisation%20FFMPEG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utilisation de ffmpeg dans le projet Meteorix
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Utilisation%20MVE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Détection des météores en utilisant mv-extractor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Implémentation Flownet sur em780
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annexes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Résultats de FlowNetCorr
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#donnees-testees" class="md-nav__link">
+    <span class="md-ellipsis">
+      Données testées
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorties-du-reseau" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sorties du réseau
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultats" class="md-nav__link">
+    <span class="md-ellipsis">
+      Résultats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Résultats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reduction-dimage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Réduction d'image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coupage-et-mise-en-nuance-de-gris-de-limage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coupage et mise en nuance de gris de l'image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limites-des-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limites des tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="inference-de-flownet">Inférence de FlowNet</h1>
+<p>Nous avons récupéré la première version de FlowNet et nous l'avons fait fonctionner sur l'EM780. Puis nous avons dû tester si FlowNet était vraiment pertinent dans le cadre de ce projet. Le défi avec la capture de météore est le fait que le météore est un objet très petit qui peut facilement ne pas être détecté si on prend en compte la qualité moyenne de certaines vidéos (et donc le bruit dans ces images).</p>
+<h2 id="donnees-testees">Données testées</h2>
+<p>Les données que nous avons utilisées ont été fourni par M. Cassagne. Nous avons récupéré des images de vidéo de 30 fps montrant des météores avec un fond de villes ou de nuages, ce qui correspond aux images que pourrait prendre le nanosatellite. Nous avons essayé de modifier les images données au réseau pour voir si cela améliorait les résultats ou non. Les modifications testées ont été :</p>
+<ul>
+<li>d'images de couleur à en nuance de gris (ce qui est pertinent car les images de la caméra du nanosatellite seront en nuance de gris)</li>
+<li>réduction de qualité (l'espacement des pixels étant diminué, le flot optique aurait pu être plus facilement calculé)</li>
+<li>des images coupées sur le météore (le météore étant très petit sur un fond qui "bouge" dans le même sens, le fait de couper l'image sur le météore permet de donner "plus de poids" au mouvement du météore et le crop fait sens vis à vis du travail fourni par le premier axe de ce projet)</li>
+</ul>
+<p>Les météores pouvant apparaître que sur quelques frames, nous n'avons pas cherché à regarder le flot optique sur des images avec un fps moins élevé. Finalement, nous donnons au réseau deux images préalablement extraite d'une vidéo, présélectionnée (ou nous pouvons remarquer un météore à l'oeil nu) et peut être modifiée de, soit 1280x720 (la taille originale), soit 480x320 (crop ou réduite). Pour cela nous avons utilisé des commandes de FFMPEG.</p>
+<h2 id="sorties-du-reseau">Sorties du réseau</h2>
+<p>En sortie du réseau de neurones, nous avons une image de taille divisée par quatre (de la taille initiale) ou la couleur des pixels représente l'angle du vecteur de flot optique calculé et l'intensité des couleurs représente la norme du vecteur. Nous pouvons aussi avoir en sortie des fichier npy qui donnent des matrices (numpy) avec le flot optique directement. Des options sont possible dans le code de FlowNet pour n'avoir accès qu'à un type de sortie ou pour avoir les deux en même temps. Cette option n'implique pas un coût de calcul supérieur dans chacun des cas.</p>
+<p>Ci-dessous un exemple de sortie sur le flot calculée entre la 148ème et la 149ème frame de la vidéo v99.mp4 fournie :</p>
+<p><img alt="Image de flot optique" src="../figure14.png" />  </p>
+<h2 id="resultats">Résultats</h2>
+<h3 id="reduction-dimage">Réduction d'image</h3>
+<p>Différence entre un flot optique obtenu à partir de deux images réduites ainsi qu'à leur taille initiale sur la vidéo v99.mp4 :</p>
+<p><img alt="Frame 170" src="../figure15.png" />  </p>
+<p><img alt="flot optique avec image initiale" src="../figure16.png" />  </p>
+<p>Ici nous pouvons remarquer très clairement que le flot optique ne capture pas plus facilement le météore avec une image réduite. La raison serait lié à l'entraînement de FlowNet prenant en compte le bruit gaussien pouvant exister entre deux images : dans une vidéo, des pixels peuvent changer très légèrement de couleur ainsi que disparaître ou apparaître. FlowNet a été entraîné pour ne pas prendre en compte ces "erreurs". Le météore étant très petit, la réduction le rend encore plus petit et donc beaucoup moins détectable.</p>
+<h3 id="coupage-et-mise-en-nuance-de-gris-de-limage">Coupage et mise en nuance de gris de l'image</h3>
+<p>Ci-dessous la sortie pour les frames 106 et 107 de la vidéo v03.mp4 avec soit l'image en couleur ou en nuance de gris, soit l'image coupée ou non.</p>
+<p><img alt="flot" src="../figure17.png" />  </p>
+<p><img alt="flot" src="../figure18.png" />  </p>
+<p>A l'oeil nu, en format vidéo, la différence entre crop/taille initiale et couleur/nuance de gris est visible. Il faut aussi noter que malgré cela quand le météore n'est pas détectée dans la "pire" version possible (image sans changement), il n'est pas détecté dans les autres versions non plus. Vis à vis des performances, le réseau ne gagne pas de temps en traitant une image en nuance de gris (ce qui pourrait être une piste si le but est d'optimiser ce réseau dans ce projet) mais en gagne énormément en coupant l'image. Ainsi, pour la chaine de traitement après la détermination du flot optique et pour le temps de calcul, il serait préférable de couper l'image (la vidéo étant déjà en nuance de gris).</p>
+<h3 id="limites-des-tests">Limites des tests</h3>
+<p>Ci-dessous le flot calculé à partir de la vidéo v02.mp4, une séquence avec des nuages et un météore très peu visible.</p>
+<p><img alt="flot optique avec image initiale" src="../figure19.png" />  </p>
+<p>Cependant, comme montré au-dessus, dans certaines séquences compliquées, nous n'arrivons pas à détecter de météores. Nous avons remarqué que entre des séquences avec en fond une ville contre des séquences avec en fond des nuages, le réseau pouvait plus facilement trouver le météore avec un fond de type "ville". En regardant plus attentivement, cela fait sens du au fait que les pixels des nuages "bourgent" énormément (beaucoup de pixels dans les nuages changent assez brusquement de couleurs alors qu'on peut à l'oeil nu remarquer un mouvement global).</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Les images de flot optique obtenues précédemment représentent, pour certaines, un flot optique assez satisfaisant et pertinent par rapport au mouvement étudié. Nous avons testé la pertinence de certaines modifications sur les images en entrée et avons eu des résultats concluant dessus. Néanmoins, pour d'autres images, certains flots optiques demeurent insatisfaisants. On a vu que cette performance pouvait être fortement liée au choix du modèle entraîné mais aussi au choix de différents paramètres sur la paire d'image à l'entrée comme les différents type de fond des vidéos.</p>
+<p>Nous avons aussi mesuré le temps nécessaire pour le calcul du flot optique qui est disponible dans un table en annexe. Ce sont des résultats obtenus sur deux vidéos : v00.mp4 et v02.mp4.</p>
+<p>Voyant ces résultats, nous avons conclus que les poids que nous avions n'était pas suffisant pour notre projet. Nous avons donc essayé de commencer à générer un dataset pour un apprentissage plus spécifique à notre problème dans le temps qu'il nous restait.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

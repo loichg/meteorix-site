@@ -1,0 +1,741 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../detection/">
+      
+      
+        <link rel="next" href="../param/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Environnement d'éxécution - Meteorix</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#environnement-dexecution" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Meteorix" class="md-header__button md-logo" aria-label="Meteorix" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Meteorix
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Environnement d'éxécution
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Meteorix" class="md-nav__button md-logo" aria-label="Meteorix" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Meteorix
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Algorithme de détection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Environnement d'éxécution
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Environnement d'éxécution
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#procedure-pour-utiliser-la-puce-materielle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procédure pour utiliser la puce matérielle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procédure pour utiliser la puce matérielle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copier-les-images-sur-la-machine-em780" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copier les images sur la machine EM780
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformer-une-video-compressee-au-format-ppm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformer une vidéo compressée au format ppm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compresser-les-images-ppm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compresser les images ppm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilisation-des-gpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utilisation des GPUs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utilisation des GPUs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nvidia-geforce-rtx-3090" class="md-nav__link">
+    <span class="md-ellipsis">
+      NVidia GeForce RTX 3090
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amd-radeon-780m" class="md-nav__link">
+    <span class="md-ellipsis">
+      AMD Radeon 780M
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../param/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Paramètre de compression
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Documentation pour Flownet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inférence de Flownet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Génération d'une base de données
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Utilisation%20FFMPEG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utilisation de ffmpeg dans le projet Meteorix
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Utilisation%20MVE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Détection des météores en utilisant mv-extractor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Implémentation Flownet sur em780
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../annexes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Résultats de FlowNetCorr
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#procedure-pour-utiliser-la-puce-materielle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procédure pour utiliser la puce matérielle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procédure pour utiliser la puce matérielle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copier-les-images-sur-la-machine-em780" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copier les images sur la machine EM780
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformer-une-video-compressee-au-format-ppm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transformer une vidéo compressée au format ppm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compresser-les-images-ppm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compresser les images ppm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilisation-des-gpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      Utilisation des GPUs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Utilisation des GPUs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nvidia-geforce-rtx-3090" class="md-nav__link">
+    <span class="md-ellipsis">
+      NVidia GeForce RTX 3090
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amd-radeon-780m" class="md-nav__link">
+    <span class="md-ellipsis">
+      AMD Radeon 780M
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="environnement-dexecution">Environnement d'exécution</h1>
+<p>Dans l'espace, le nanosatellite sera équipé d'une puce matérielle pour encoder une vidéo à partir d'images brutes. Notre client, Mr. Cassagne, nous a mis à disposition l'EM780, une machine distante située au Laboratoire d'Informatique de Paris 6.</p>
+<h2 id="procedure-pour-utiliser-la-puce-materielle">Procédure pour utiliser la puce matérielle</h2>
+<h3 id="copier-les-images-sur-la-machine-em780">Copier les images sur la machine EM780</h3>
+<p>Nous avons des vidéos de météores en local, nous allons copier les vidéos sur le disque dur de l'EM780 qui a des encodeurs similaires à ceux que l'on aura sur le satellite.</p>
+<p>Pour se connecter à la machine :</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh em780.mono.lip6.ext
+</span></code></pre></div>
+<p>Puis on copie les vidéos de la manière suivante :</p>
+<p>(en local) scp fichier-sur-la-machine em780.mono.lip6.ext:~/
+(sur l'em780) mv v03.mp4 /scratch/&lt;\username&gt;-nfs
+De plus, FFMPEG est déjà installé sur la machine, on pourra donc utiliser directement les commandes FFMPEG depuis la machine.</p>
+<h3 id="transformer-une-video-compressee-au-format-ppm">Transformer une vidéo compressée au format ppm</h3>
+<p>Pour le moment nous avons des vidéos de météores dans des formats compressés (H.264 ou MPEG-4) que nous avons pu récupérer sur l'EM780. Or la caméra du satellite récupère des images au format ppm (format brut). Nous voulons donc transformer nos vidéos compressées en images au format ppm pour ensuite donner ces images à la puce afin qu'elle les compresse. La commande suivante permet de le faire en créant un répertoire stockant les images :</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdir -p output_images &amp;&amp; ffmpeg -i video.mpg output_images/image%d.ppm
+</span></code></pre></div>
+<h3 id="compresser-les-images-ppm">Compresser les images ppm</h3>
+<p>Enfin pour compresser les images nous allons adresser l'un des deux GPUs présent sur l'EM780 :</p>
+<p>adresser la puce sur le GPU embarqué AMD Radeon 780M (avec VAAPI)
+adresser la puce sur le GPU externe NVidia GeForce RTX 3090 (dans ce cas il faut utiliser NVENC)
+L'option 1 est la meilleure car la puce est sur le SoC, c'est-à-dire que le GPU est directement sur la puce ce qui est plus proche de la réalité dans un nano-satellite. L'option 2 est certainement plus facile car NVENC est bien supporté et documenté en général.</p>
+<h2 id="utilisation-des-gpus">Utilisation des GPUs</h2>
+<h3 id="nvidia-geforce-rtx-3090">NVidia GeForce RTX 3090</h3>
+<p>Nous avons réussi à utiliser le GPU Nvidia avec la commande suivante :</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ffmpeg -hwaccel cuda -framerate 30 -i output_images/image%d.ppm -c:v h264_nvenc -preset fast -b:v 5M compressed_video.mp4 -loglevel verbose
+</span></code></pre></div>
+<p>Ce qui est important à retenir est -hwaccel cuda qui active l'accélération matérielle CUDA pour optimiser le traitement ainsi que -c:v h264_nvenc qui utilise NVENC pour encoder la vidéo au format H.264. Dans la commande on donne le répertoire avec les images au format ppm et on indique le nom et le format de la vidéo en sortie.</p>
+<p>On peut aussi regarder l'utilisation du GPU en parallèle avec nvidia-smi et comparer la consommation d'énergie avant et pendant la compression. Nous trouvons une consommation de 28W sans processus en cours tandis que la consommation est de 108W en lançant notre algorithme. Il y a donc une augmentation de 80 watts, nous pouvons donc conclure que FFMPEG utilise bien le GPU. Cela nous permettra de simuler la compression dans l'espace.</p>
+<h3 id="amd-radeon-780m">AMD Radeon 780M</h3>
+<p>Pour utiliser le GPU AMD Radeon on va essayer d'utiliser la bibliothèque VAAPI. Avec la commande suivante on adresse l'AMD Radeon 780M :</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ffmpeg -vaapi_device /dev/dri/renderD128 -i output_images/image%d.ppm -vf &#39;format=nv12,hwupload&#39; -c:v h264_vaapi -qp 24 -preset fast compressed_video.mp4
+</span></code></pre></div>
+<p>L'idée est la même que précédemment avec -vaapi_device /dev/dri/renderD128 qui spécifie le périphérique VAAPI à utiliser, -vf 'format=nv12,hwupload' qui convertit les images au format compatible VAAPI (nv12) et les télécharge sur le GPU. Et enfin -c:v h264_vaapi qui utilise VAAPI pour encoder en H.264.</p>
+<p>Nous n'avons pas réussi à utiliser l'AMD Radeon du fait de bibliothèques trop compliquées à installer. Pour la suite nous utiliserons donc uniquement le GPU NVidia GeForce RTX 3090.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
